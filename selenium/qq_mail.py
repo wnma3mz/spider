@@ -30,7 +30,8 @@ if __name__ == '__main__':
     time.sleep(1)
     
     # find_target
-    driver.get('https://mail.qq.com/cgi-bin/frame_html?t=frame_html&sid=PgvFJ6S3kl9CKRJL&url=/cgi-bin/mail_list?folderid=personal%26page=0%26stype=myfolders')
+    # target_url 目标url
+    driver.get(target_url)
     driver.switch_to.frame('mainFrame')
     driver.find_element_by_class_name("toarea").click()
     

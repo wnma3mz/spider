@@ -49,9 +49,6 @@ def getInf1(url):
     print("\n")
 
 
-def save(data):
-    pass
-
 if __name__ == '__main__':
     url_index = 'https://book.douban.com'
     url = 'https://book.douban.com/tag/?view=type&icn=index-sorttags-all'
