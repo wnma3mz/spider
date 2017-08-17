@@ -50,4 +50,8 @@ selenium练习代码
 
 ## music163/
 ### main.py
-获取用户最近的听歌歌曲，利用selenium获取，暂不能放入服务器运行
+获取用户最近的听歌歌曲，利用selenium获取
+### main2.py
+main.py升级版，利用requests获取
+### main3.py
+用python运行shell命令获取用户的id
