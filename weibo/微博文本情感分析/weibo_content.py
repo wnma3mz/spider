@@ -40,13 +40,13 @@ for num in range(1, 21):
     # 利用sub函数去除不必要的字符
     # 去除CSS样式和其他人的艾特文字
     text_list = [re.sub(r'//.+', '', re.sub(r'<(.+?)>', '', text)) for text in text_list]
-    # 去除微博内容中出现的“网页链接”和@对象
-    text_list = [re.sub(r'网页链接', '', re.sub(r'@.+? ', '', text)) for text in text_list]
-    # 去除微博内容给出现的图片、视频标题和无权限查看的转发微博内容
+    # 利用正则去除一些影响内容    
+    text_list = [re.sub(r'网页链接? ', '', re.sub(r'@.+? ', '', text)) for text in text_list]
     text_list = [re.sub(r'#.+?#', '', re.sub(r'抱歉.+?。', '', text)) for text in text_list]
-    # 去除“转发微博”
-    text_list = [re.sub(r'转发微博', '', text) for text in text_list]
-    
+    text_list = [re.sub(r'转发微博? ', '', re.sub(r'转发? ', '', text)) for text in text_list]
+    text_list = [re.sub(r' 查看帮助：http：', '', re.sub(r'查看图片? ', '', text)) for text in text_list]
+    text_list = [re.sub(r' 查看帮助：', '', text) for text in text_list] 
+
     # 保存微博时间和微博内容为numpy数组
     new_arr = np.array([date_list, text_list])
     # 进行合并
