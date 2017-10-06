@@ -1,6 +1,6 @@
 # 这个文件夹存放的是一些简单的Python爬虫文件
 
-所有的代码未声明，均为python3代码
+所有的代码如未特殊声明，均为python3代码
 
 其中包含的常用的第三方库
 
@@ -55,3 +55,6 @@ selenium练习代码
 main.py升级版，利用requests获取
 ### main3.py
 用python运行shell命令获取用户的id
+
+## baidubaike/
+百度百科'Python'的爬取

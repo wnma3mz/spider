@@ -1,0 +1,44 @@
+import re
+from urllib.parse import urljoin
+from bs4 import BeautifulSoup as bs
+
+
+class HtmlParser(object):
+
+
+    def parse(self, page_url, html_cont):
+        if page_url is None or html_cont is None:
+            return
+        soup = bs(html_cont, 'lxml')
+        new_urls = self._get_new_urls(page_url, soup)
+        new_data = self._get_new_data(page_url, soup)
+        return new_urls, new_data
+
+    def _get_new_data(self, page_url, soup):
+        res_data = {}
+
+        # url-->网页链接
+        res_data['url'] = page_url
+
+        # <dd class>="lemmaWgt-lemmaTitle-title"> <h1>Python</h1>-->网页标题
+        title_node = soup.find('dd', class_ = 'lemmaWgt-lemmaTitle-title').find('h1')
+        res_data['title'] = title_node.get_text()
+        
+        # <div class="lemma-summary">-->网页概要
+        summary_node = soup.find('div', class_ = 'lemma-summary')
+        res_data['summary'] = summary_node.get_text()
+        return res_data
+
+    def _get_new_urls(self, page_url, soup):
+        new_urls = set()
+        # /item/123.htm
+        links = soup.find_all('a', href = re.compile(r'/item/\w+'))
+        for link in links:
+            number = link['href'].split('/')[-1]
+            try:
+                new_url = link['href'] + '.html' if number == re.search(r'\d+', number)[0] else link['href']  
+            except:
+                new_url = link['href']
+            new_full_url = urljoin(page_url, new_url)
+            new_urls.add(new_full_url)
+        return new_urls

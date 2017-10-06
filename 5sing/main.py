@@ -36,7 +36,7 @@ def getHTML(posturl):
 
 # 通过selenium获取Js代码
 def getJS(url, name):
-    driver = webdriver.PhantomJS()
+    driver = webdriver.PhantomJS(executable_path='/root/phantomjs-2.1.1-linux-x86_64/bin/phantomjs')
     driver.get(url)
     # 获取JS代码
     html = driver.page_source
